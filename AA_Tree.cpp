@@ -1,14 +1,13 @@
-#include "AA_Tree.h"
-#include <queue>
 #include <iostream>
+#include <vector>
+#include "AA_Tree.h"
 using namespace std;
 
 template<class T>
 AA_Tree<T>::AA_Tree():root(nullptr) {}
 
-
 template<class T>
-typename AA_Tree<T>::Node* AA_Tree<T>::insert_node(T target, AA_Tree::Node *node) {
+typename AA_Tree<T>::NodePointer AA_Tree<T>::insert_node(T target, AA_Tree::NodePointer node) {
     if(!node)
         node= new Node(target);
     else if(target < node->value)
@@ -21,18 +20,18 @@ typename AA_Tree<T>::Node* AA_Tree<T>::insert_node(T target, AA_Tree::Node *node
 }
 
 template<class T>
-typename AA_Tree<T>::Node *AA_Tree<T>::skew(AA_Tree::Node *node) {
+typename AA_Tree<T>::NodePointer AA_Tree<T>::skew(AA_Tree::NodePointer node) {
     if (!node)
         return nullptr;
     if (node->left && node->level == node->left->level){
         // we perform right rotation to node
         return right_rotation(node);
-    }else
-        return node;
+    }
+    else return node;
 }
 
 template<class T>
-typename AA_Tree<T>::Node *AA_Tree<T>::split(AA_Tree::Node *node) {
+typename AA_Tree<T>::NodePointer AA_Tree<T>::split(AA_Tree::NodePointer node) {
     if (!node)
         return nullptr;
     if (node->right && node->right->right && node->level == node->right->right->level){
@@ -52,47 +51,43 @@ void AA_Tree<T>::insert(T value) {
 
 template<class T>
 void AA_Tree<T>::print_level_order() {
-    if(root)
-        level_order(root);
-    else
-        cout<<"Error - Tree is empty\n";
-}
-
-template<class T>
-void AA_Tree<T>::level_order(AA_Tree::Node *node) {
-    queue<Node*> nodes;
-    nodes.push(node);
-    int level=node->level;
-    while (!nodes.empty()){
-        int x=nodes.size();
-        cout<<"Level-- "<<level<<" : ";
-        while(x--){
-            Node* cur=nodes.front();
-            nodes.pop();
-            cout<<cur->value<<" ";
-            if (cur->left)
-                nodes.push(cur->left);
-            if (cur->right)
-                nodes.push(cur->right);
+    if(root){
+        vector<vector<T>> elements;
+        level_order(root, elements);
+        for(int i=1; i<=root->level; i++){
+            cout << "Level " << i << ":";
+            for(int j=0; j<elements[i].size(); j++){
+                cout << " " << elements[i][j];
+            }
+            cout << endl;
         }
-        if (!nodes.empty())
-            level=nodes.front()->level;
-        cout<<"\n";
     }
+    else cout<<"Error - Tree is empty\n";
+}
+
+template<class T>
+void AA_Tree<T>::level_order(AA_Tree::NodePointer node, vector<vector<T>> &elements) {
+    if(node->left) level_order(node->left, elements);
+    while (node->level >= elements.size()){
+        vector<T> v;
+        elements.push_back(v);
+    }
+    elements[node->level].push_back(node->value);
+    if(node->right) level_order(node->right, elements);
 }
 
 
 template<class T>
-typename AA_Tree<T>::Node *AA_Tree<T>::right_rotation(AA_Tree::Node *node) {
-    Node* temp=node->left;
+typename AA_Tree<T>::NodePointer AA_Tree<T>::right_rotation(AA_Tree::NodePointer node) {
+    NodePointer temp=node->left;
     node->left=temp->right;
     temp->right=node;
     return temp;
 }
 
 template<class T>
-typename AA_Tree<T>::Node *AA_Tree<T>::left_rotation(AA_Tree::Node *node) {
-    Node* temp=node->right;
+typename AA_Tree<T>::NodePointer AA_Tree<T>::left_rotation(AA_Tree::NodePointer node) {
+    NodePointer temp=node->right;
     node->right=temp->left;
     temp->left=node;
     temp->level++;
@@ -101,7 +96,7 @@ typename AA_Tree<T>::Node *AA_Tree<T>::left_rotation(AA_Tree::Node *node) {
 
 template<class T>
 bool AA_Tree<T>::search(T target) {
-    Node* node=root;
+    NodePointer node=root;
     while(node){
         if (node->value == target)
             return true;
@@ -123,10 +118,10 @@ void AA_Tree<T>::print_in_order() {
 }
 
 template<class T>
-void AA_Tree<T>::in_order(AA_Tree::Node *node) {
+void AA_Tree<T>::in_order(AA_Tree::NodePointer node) {
     if (!node)
         return;
     in_order(node->left);
-    cout<<node->value<<"**"<<node->level<<" ";
+    cout<<node->value<<"(level"<<node->level<<") ";
     in_order(node->right);
 }

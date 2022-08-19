@@ -1,9 +1,12 @@
 #ifndef PROJECT_AA_TREE_H
 #define PROJECT_AA_TREE_H
+#include <vector>
 
+using namespace std;
 
 template<typename T>
 class AA_Tree {
+
 private:
     class Node{
     public:
@@ -14,14 +17,18 @@ private:
         Node():level(0),right(nullptr),left(nullptr){}
         Node(T item):value(item),left(nullptr),right(nullptr),level(1){}
     };
-    Node* root;
-    Node* insert_node(T target,Node* node);
-    Node* skew(Node* node);
-    Node* split(Node* node);
-    void level_order(Node* node);
-    void in_order(Node* node);
-    Node* right_rotation(Node* node);
-    Node* left_rotation(Node* node);
+
+    typedef Node* NodePointer;
+    NodePointer root;
+
+    NodePointer insert_node(T target,NodePointer node);
+    NodePointer skew(NodePointer node);
+    NodePointer split(NodePointer node);
+    void level_order(NodePointer node, vector<vector<T>> &elements);
+    void in_order(NodePointer node);
+    NodePointer right_rotation(NodePointer node);
+    NodePointer left_rotation(NodePointer node);
+
 public:
     AA_Tree();
     void insert(T value);
