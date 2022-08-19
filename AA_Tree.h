@@ -26,8 +26,11 @@ private:
     NodePointer split(NodePointer node);
     void level_order(NodePointer node, vector<vector<T>> &elements);
     void in_order(NodePointer node);
+    void preorderTraversalAux(NodePointer node);
+    void postorderTraversalAux(NodePointer node);
     NodePointer right_rotation(NodePointer node);
     NodePointer left_rotation(NodePointer node);
+    NodePointer removeAux(T value, NodePointer node);
 
 public:
     AA_Tree();
@@ -35,6 +38,9 @@ public:
     void print_level_order();
     bool search(T target);
     void print_in_order();
+    void preorderTraversal();
+    void postorderTraversal();
+    void remove(const T &value);
 };
 
 
