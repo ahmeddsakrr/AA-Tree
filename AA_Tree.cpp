@@ -7,6 +7,11 @@ template<class T>
 AA_Tree<T>::AA_Tree():root(nullptr) {}
 
 template<class T>
+AA_Tree<T>::~AA_Tree() {
+    while(root) remove(root->value);
+}
+
+template<class T>
 typename AA_Tree<T>::NodePointer AA_Tree<T>::insert_node(T target, AA_Tree::NodePointer node) {
     if(!node)
         node= new Node(target);
@@ -163,8 +168,12 @@ template<class T>
 typename AA_Tree<T>::NodePointer AA_Tree<T>::removeAux(T value, NodePointer node){
     if(!root) return 0;
 
-    if(value<node->value) node->left = removeAux(value, node->left);
-    else if(value>node->value) node->right = removeAux(value, node->right);
+    if(value < node->value) node->left = removeAux(value, node->left);
+    else if(value > node->value) node->right = removeAux(value, node->right);
+    else if(value != node->value){
+        cout << "No such value in the tree\n";
+        return node;
+    }
     else{
         if(!node->left && !node->right) {
             delete node;

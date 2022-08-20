@@ -34,6 +34,7 @@ private:
 
 public:
     AA_Tree();
+    ~AA_Tree();
     void insert(T value);
     void print_level_order();
     bool search(T target);
