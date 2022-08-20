@@ -31,6 +31,7 @@ private:
     NodePointer right_rotation(NodePointer node);
     NodePointer left_rotation(NodePointer node);
     NodePointer removeAux(T value, NodePointer node);
+    Node* deep_copy(Node* node); // aux for copy constructor and assignment operator
 
 public:
     AA_Tree();
@@ -42,6 +43,8 @@ public:
     void preorderTraversal();
     void postorderTraversal();
     void remove(const T &value);
+    AA_Tree(const AA_Tree<T> &other);
+    const AA_Tree<T> & operator= (const AA_Tree<T> & rightHandSide);
 };
 
 

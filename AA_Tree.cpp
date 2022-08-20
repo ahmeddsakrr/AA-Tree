@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include "AA_Tree.h"
 using namespace std;
 
@@ -205,4 +206,31 @@ typename AA_Tree<T>::NodePointer AA_Tree<T>::removeAux(T value, NodePointer node
     if(node->right) node->right = split(node->right);
 
     return node;
+}
+
+template<class T>
+AA_Tree<T>::AA_Tree(const AA_Tree<T> &other)  {
+    root=deep_copy(other.root);
+}
+
+template<class T>
+typename AA_Tree<T>::Node *AA_Tree<T>::deep_copy(AA_Tree::Node *node) {
+    if (node){
+        Node* cur=new Node(node->value);
+        cur->left= deep_copy(node->left);
+        cur->right= deep_copy(node->right);
+        return cur;
+    }else
+        return nullptr;
+}
+
+template<class T>
+const AA_Tree<T> &AA_Tree<T>::operator=(const AA_Tree<T> &rightHandSide) {
+    assert(this!=rightHandSide);
+    this->~AA_Tree();
+    if (rightHandSide.root){
+        this->root= deep_copy(rightHandSide.root);
+    }else
+        root= nullptr;
+    return *this;
 }
