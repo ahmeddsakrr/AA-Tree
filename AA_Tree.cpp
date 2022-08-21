@@ -256,7 +256,7 @@ T AA_Tree<T>::findElement(int & count){
 }
 
 template<class T>
-void findElementAux(int & count, typename AA_Tree<T>::NodePointer node, bool & found, T & value){
+void AA_Tree<T>::findElementAux(int & count, typename AA_Tree<T>::NodePointer node, bool & found, T & value){
     if (!node || found) return;
     findElementAux(count, node->left, found, value);
     count--;

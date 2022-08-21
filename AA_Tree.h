@@ -32,7 +32,7 @@ private:
     NodePointer left_rotation(NodePointer node);
     NodePointer removeAux(T value, NodePointer node);
     Node* deep_copy(Node* node); // aux for copy constructor and assignment operator
-    T findElementAux(int & count, NodePointer node, bool & found, T & value);
+    void findElementAux(int & count, NodePointer node, bool & found, T & value);
     void destructorAux(NodePointer node);
 
 public:
