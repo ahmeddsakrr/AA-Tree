@@ -9,6 +9,8 @@ void order(){
          << "Press 'i' to insert new value\n"
          << "Press 'd' to delete a value\n"
          << "Press 's' to search for a value\n"
+         << "Press 'e' to check if the tree is empty\n"
+         << "Press 'f' to find the n(th) value in the tree\n"
          << "Press 'l' to print level order of the tree\n"
          << "Press 'n' for inorder traversal of the tree\n"
          << "Press 'r' for preorder traversal of the tree\n"
@@ -46,6 +48,15 @@ int main() {
                 else
                     cout << "Not Found\n";
                 break;
+            case 'e':
+                if(tree->empty()) cout << "Tree is empty\n";
+                else cout << "Tree is not empty\n";
+                break;
+            case 'f':
+                cout << "Enter the order of the element to find:";
+                int elemOrder;
+                cin >> elemOrder;
+                cout << "The " << elemOrder << "th element is " << tree->findElement(elemOrder) << endl;
             case 'l':
                 tree->print_level_order();
                 break;
@@ -65,44 +76,3 @@ int main() {
         cin >> choice;
     }
 }
-
-
-//    AA_Tree<int> tree;
-//    tree.insert(1);
-//    tree.print_level_order();
-//    cout<<endl;
-//    tree.insert(5);
-//    tree.print_level_order();
-//    cout<<endl;
-//    tree.insert(10);
-//    tree.print_level_order();
-//    cout<<endl;
-//    tree.insert(2);
-//    tree.print_level_order();
-//    cout<<endl;
-//    tree.insert(6);
-//    tree.print_level_order();
-//    cout<<endl;
-//    tree.insert(98);
-//    tree.print_level_order();
-//    cout<<endl;
-//
-//    cout<<"Printing InOrder: \n";
-//    tree.print_in_order();
-//    cout<<endl<<endl;
-//
-//    cout<<"Preorder Traversal: \n";
-//    tree.preorderTraversal();
-//    cout<<endl<<endl;
-//
-//    cout<<"Postorder Traversal: \n";
-//    tree.postorderTraversal();
-//    cout<<endl<<endl;
-//
-//    cout<<boolalpha;
-//    cout<<tree.search(10)<<endl;
-//    cout<<tree.search(100)<<endl;
-//    cout<<endl<<endl;
-//
-//    tree.remove(5);
-//    tree.print_level_order();

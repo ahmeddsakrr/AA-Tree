@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cassert>
 #include "AA_Tree.h"
 using namespace std;
 
@@ -9,7 +8,19 @@ AA_Tree<T>::AA_Tree():root(nullptr) {}
 
 template<class T>
 AA_Tree<T>::~AA_Tree() {
-    while(root) remove(root->value);
+    if(!empty()) destructorAux(root);
+}
+
+template<class T>
+void destructorAux(typename AA_Tree<T>::NodePointer node){
+    if(node->left) destructorAux(node->left);
+    if(node->right) destructorAux(node->right);
+    delete node;
+}
+
+template<class T>
+bool AA_Tree<T>::empty() const{
+    return !root;
 }
 
 template<class T>
@@ -49,7 +60,7 @@ typename AA_Tree<T>::NodePointer AA_Tree<T>::split(AA_Tree::NodePointer node) {
 
 template<class T>
 void AA_Tree<T>::insert(T value) {
-    if(!root)
+    if(empty())
         root=new Node(value);
     else
         root= insert_node(value,root); // root can be changed.
@@ -57,18 +68,19 @@ void AA_Tree<T>::insert(T value) {
 
 template<class T>
 void AA_Tree<T>::print_level_order() {
-    if(root){
-        vector<vector<T>> elements;
-        level_order(root, elements);
-        for(int i=1; i<=root->level; i++){
-            cout << "Level " << i << ":";
-            for(int j=0; j<elements[i].size(); j++){
-                cout << " " << elements[i][j];
-            }
-            cout << endl;
-        }
+    if(empty()){
+        cout<<"Error - Tree is empty\n";
+        return;
     }
-    else cout<<"Error - Tree is empty\n";
+    vector<vector<T>> elements;
+    level_order(root, elements);
+    for(int i=1; i<=root->level; i++){
+        cout << "Level " << i << ":";
+        for(int j=0; j<elements[i].size(); j++){
+            cout << " " << elements[i][j];
+        }
+        cout << endl;
+    }
 }
 
 template<class T>
@@ -117,7 +129,7 @@ bool AA_Tree<T>::search(T target) {
 
 template<class T>
 void AA_Tree<T>::print_in_order() {
-    if(root)
+    if(!empty())
         in_order(root);
     else
         cout<<"Error - Tree is empty\n";
@@ -134,7 +146,7 @@ void AA_Tree<T>::in_order(AA_Tree::NodePointer node) {
 
 template<class T>
 void AA_Tree<T>::preorderTraversal(){
-    if(root) preorderTraversalAux(root);
+    if(!empty()) preorderTraversalAux(root);
     else cout<<"Error - Tree is empty\n";
 }
 
@@ -148,7 +160,7 @@ void AA_Tree<T>::preorderTraversalAux(NodePointer node){
 
 template<class T>
 void AA_Tree<T>::postorderTraversal(){
-    if(root) postorderTraversalAux(root);
+    if(!empty()) postorderTraversalAux(root);
     else cout<<"Error - Tree is empty\n";
 }
 
@@ -167,14 +179,10 @@ void AA_Tree<T>::remove(const T &value){
 
 template<class T>
 typename AA_Tree<T>::NodePointer AA_Tree<T>::removeAux(T value, NodePointer node){
-    if(!root) return 0;
+    if(!node) return 0;
 
     if(value < node->value) node->left = removeAux(value, node->left);
     else if(value > node->value) node->right = removeAux(value, node->right);
-    else if(value != node->value){
-        cout << "No such value in the tree\n";
-        return node;
-    }
     else{
         if(!node->left && !node->right) {
             delete node;
@@ -226,11 +234,36 @@ typename AA_Tree<T>::Node *AA_Tree<T>::deep_copy(AA_Tree::Node *node) {
 
 template<class T>
 const AA_Tree<T> &AA_Tree<T>::operator=(const AA_Tree<T> &rightHandSide) {
-    assert(this!=rightHandSide);
+    if(this == rightHandSide) return *this;
     this->~AA_Tree();
     if (rightHandSide.root){
         this->root= deep_copy(rightHandSide.root);
     }else
         root= nullptr;
     return *this;
+}
+
+template<class T>
+T AA_Tree<T>::findElement(int & count){
+    T value;
+    bool found = false;
+    findElementAux(count, root, found, value);
+    if(found) return value;
+    else{
+        cerr << "No such element in the tree\n";
+        exit(1);
+    }
+}
+
+template<class T>
+void findElementAux(int & count, typename AA_Tree<T>::NodePointer node, bool & found, T & value){
+    if (!node || found) return;
+    findElementAux(count, node->left, found, value);
+    count--;
+    if(!count){
+        found = true;
+        value = node->value;
+        return;
+    }
+    findElementAux(count, node->right, found, value);
 }

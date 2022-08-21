@@ -32,6 +32,8 @@ private:
     NodePointer left_rotation(NodePointer node);
     NodePointer removeAux(T value, NodePointer node);
     Node* deep_copy(Node* node); // aux for copy constructor and assignment operator
+    T findElementAux(int & count, NodePointer node, bool & found, T & value);
+    void destructorAux(NodePointer node);
 
 public:
     AA_Tree();
@@ -39,12 +41,14 @@ public:
     void insert(T value);
     void print_level_order();
     bool search(T target);
+    bool empty() const;
     void print_in_order();
     void preorderTraversal();
     void postorderTraversal();
     void remove(const T &value);
     AA_Tree(const AA_Tree<T> &other);
     const AA_Tree<T> & operator= (const AA_Tree<T> & rightHandSide);
+    T findElement(int & count);
 };
 
 
