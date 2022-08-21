@@ -28,6 +28,8 @@ type getValue(){
 
 int main() {
     auto *tree = new AA_Tree<type>;
+    type value;
+
     order();
     char choice;
     cin >> choice;
@@ -56,7 +58,9 @@ int main() {
                 cout << "Enter the order of the element to find:";
                 int elemOrder;
                 cin >> elemOrder;
-                cout << "The " << elemOrder << "th element is " << tree->findElement(elemOrder) << endl;
+                value = tree->findElement(elemOrder);
+                cout << "The " << elemOrder << "th element is " << value << endl;
+                break;
             case 'l':
                 tree->print_level_order();
                 break;

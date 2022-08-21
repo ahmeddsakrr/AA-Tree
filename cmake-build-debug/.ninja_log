@@ -1,7 +1,7 @@
 # ninja log v5
-0	395	6827038167345334	CMakeFiles/Project.dir/AA_Tree.cpp.obj	49aaed817d06d809
-9	523	6827038168617817	CMakeFiles/Project.dir/main.cpp.obj	984cb9b99aeb1cf7
-523	687	6827038170173636	Project.exe	fed8b1f01022b8d2
 9	381	6828030752896148	CMakeFiles/Project.dir/AA_Tree.cpp.obj	49aaed817d06d809
 1	531	6828030754386467	CMakeFiles/Project.dir/main.cpp.obj	984cb9b99aeb1cf7
 531	724	6828030756205404	Project.exe	fed8b1f01022b8d2
+9	6818	6828037742706660	CMakeFiles/Project.dir/AA_Tree.cpp.obj	818dc32596bd4ad2
+1	7355	6828037748069293	CMakeFiles/Project.dir/main.cpp.obj	c01059257023422f
+7356	8663	6828037761074070	Project.exe	8a193598b02341ff
