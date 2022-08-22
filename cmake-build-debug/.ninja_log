@@ -2,6 +2,7 @@
 9	6818	6828037742706660	CMakeFiles/Project.dir/AA_Tree.cpp.obj	818dc32596bd4ad2
 1	7355	6828037748069293	CMakeFiles/Project.dir/main.cpp.obj	c01059257023422f
 7356	8663	6828037761074070	Project.exe	8a193598b02341ff
+<<<<<<< Updated upstream
 12	414	6828736260788267	CMakeFiles/Project.dir/AA_Tree.cpp.obj	49aaed817d06d809
 2	630	6828736262906302	CMakeFiles/Project.dir/main.cpp.obj	984cb9b99aeb1cf7
 630	836	6828736264895758	Project.exe	fed8b1f01022b8d2
@@ -31,3 +32,7 @@
 1144	1491	6829059816593649	Project.exe	fed8b1f01022b8d2
 5	578	6829060008969186	CMakeFiles/Project.dir/main.cpp.obj	984cb9b99aeb1cf7
 579	810	6829060011157912	Project.exe	fed8b1f01022b8d2
+=======
+676	60417	6828864900242854	CMakeFiles/Project.dir/main.cpp.obj	c01059257023422f
+60531	70198	6828864997759158	Project.exe	8a193598b02341ff
+>>>>>>> Stashed changes
