@@ -21,7 +21,7 @@ void order(){
 
 type getValue(){
     cout << "\nEnter value:";
-    int value;
+    type value;
     cin >> value;
     return value;
 }
@@ -59,7 +59,19 @@ int main() {
                 int elemOrder;
                 cin >> elemOrder;
                 value = tree->findElement(elemOrder);
-                cout << "The " << elemOrder << "th element is " << value << endl;
+                switch (elemOrder%10) {
+                    case 1:
+                        cout << "The " << elemOrder << "st element is " << value << endl;
+                        break;
+                    case 2:
+                        cout << "The " << elemOrder << "nd element is " << value << endl;
+                        break;
+                    case 3:
+                        cout << "The " << elemOrder << "rd element is " << value << endl;
+                        break;
+                    default:
+                        cout << "The " << elemOrder << "th element is " << value << endl;
+                }
                 break;
             case 'l':
                 tree->print_level_order();

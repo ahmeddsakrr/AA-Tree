@@ -22,8 +22,8 @@ private:
     NodePointer root;
 
     NodePointer insert_node(T target,NodePointer node);
-    NodePointer skew(NodePointer node);
-    NodePointer split(NodePointer node);
+    NodePointer skew(NodePointer node); // right rotation
+    NodePointer split(NodePointer node); // left rotation
     void level_order(NodePointer node, vector<vector<T>> &elements);
     void in_order(NodePointer node);
     void preorderTraversalAux(NodePointer node);
@@ -47,8 +47,8 @@ public:
     void postorderTraversal();
     void remove(const T &value);
     AA_Tree(const AA_Tree<T> &other);
-    const AA_Tree<T> & operator= (const AA_Tree<T> & rightHandSide);
-    T findElement(int & count);
+    AA_Tree<T> & operator= (const AA_Tree<T> & rightHandSide);
+    T findElement(int count);
 };
 
 

@@ -174,13 +174,15 @@ void AA_Tree<T>::postorderTraversalAux(NodePointer node){
 
 template<class T>
 void AA_Tree<T>::remove(const T &value){
+    if(!search(value)){
+        cout << "No such value in tree\n";
+        return;
+    }
     root = removeAux(value, root);
 }
 
 template<class T>
 typename AA_Tree<T>::NodePointer AA_Tree<T>::removeAux(T value, NodePointer node){
-    if(!node) return 0;
-
     if(value < node->value) node->left = removeAux(value, node->left);
     else if(value > node->value) node->right = removeAux(value, node->right);
     else{
@@ -222,7 +224,7 @@ AA_Tree<T>::AA_Tree(const AA_Tree<T> &other)  {
 }
 
 template<class T>
-typename AA_Tree<T>::Node *AA_Tree<T>::deep_copy(AA_Tree::Node *node) {
+typename AA_Tree<T>::Node* AA_Tree<T>::deep_copy(AA_Tree::Node *node) {
     if (node){
         Node* cur=new Node(node->value);
         cur->left= deep_copy(node->left);
@@ -233,7 +235,7 @@ typename AA_Tree<T>::Node *AA_Tree<T>::deep_copy(AA_Tree::Node *node) {
 }
 
 template<class T>
-const AA_Tree<T> &AA_Tree<T>::operator=(const AA_Tree<T> &rightHandSide) {
+ AA_Tree<T> &AA_Tree<T>::operator=(const AA_Tree<T> &rightHandSide) {
     if(this == rightHandSide) return *this;
     this->~AA_Tree();
     if (rightHandSide.root){
@@ -244,7 +246,7 @@ const AA_Tree<T> &AA_Tree<T>::operator=(const AA_Tree<T> &rightHandSide) {
 }
 
 template<class T>
-T AA_Tree<T>::findElement(int & count){
+T AA_Tree<T>::findElement(int count){
     T value;
     bool found = false;
     findElementAux(count, root, found, value);
