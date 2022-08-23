@@ -210,8 +210,10 @@ typename AA_Tree<T>::NodePointer AA_Tree<T>::removeAux(T value, NodePointer node
 
     // worst case : 3 skews and 2 splits needed to maintain the tree
     node = skew(node);
-    if(node->right) node->right = skew(node->right);
-    if(node->right->right) node->right->right = skew(node->right->right);
+    if(node->right){
+        node->right = skew(node->right);
+        if(node->right->right) node->right->right = skew(node->right->right);
+    }
     node = split(node);
     if(node->right) node->right = split(node->right);
 
