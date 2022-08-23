@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "AA_Tree.h"
 #include "AA_Tree.cpp" // must be included as templates were used
 

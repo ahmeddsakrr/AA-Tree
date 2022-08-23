@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/wael1964/Desktop/ASUENG/Data Structures and Algorithms/Project/AA-Tree/AA_Tree.cpp" "CMakeFiles/Project.dir/AA_Tree.cpp.obj" "gcc" "CMakeFiles/Project.dir/AA_Tree.cpp.obj.d"
-  "C:/Users/wael1964/Desktop/ASUENG/Data Structures and Algorithms/Project/AA-Tree/main.cpp" "CMakeFiles/Project.dir/main.cpp.obj" "gcc" "CMakeFiles/Project.dir/main.cpp.obj.d"
+  "F:/Harvard Abdo Basha/SMR 2022/DS/DR Ashraf lecs/Project/AA_Tree.cpp" "CMakeFiles/Project.dir/AA_Tree.cpp.obj" "gcc" "CMakeFiles/Project.dir/AA_Tree.cpp.obj.d"
+  "F:/Harvard Abdo Basha/SMR 2022/DS/DR Ashraf lecs/Project/main.cpp" "CMakeFiles/Project.dir/main.cpp.obj" "gcc" "CMakeFiles/Project.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.
